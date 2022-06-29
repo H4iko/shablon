@@ -4,21 +4,26 @@ import java.util.Optional;
 import java.util.OptionalInt;
 
 public class PersonBuilder {
-    private  String name;
-    private  String surname;
+    private String name;
+    private String surname;
     private int age = -1;
     private String city;
 
-    public PersonBuilder(){};
+    public PersonBuilder() {
+    }
+
+    ;
 
     public PersonBuilder setName(String name) {
         this.name = name;
         return this;
     }
+
     public PersonBuilder setSurname(String surname) {
         this.surname = surname;
         return this;
     }
+
     public PersonBuilder setAge(Integer age) throws IllegalStateException {
         this.age = age;
         if (this.age < 0) {
@@ -26,6 +31,7 @@ public class PersonBuilder {
         }
         return this;
     }
+
     public PersonBuilder setAddress(String city) {
         this.city = city;
         if (this.surname == null) {
