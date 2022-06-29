@@ -10,24 +10,33 @@ public class Main {
                 setAge(23).
                 setAddress("Derevnya").
                 build();
-
-        Person you = new PersonBuilder().
-                setName("Lina").
-                setSurname("Makarova").
-                setAge(-9).
-                build();
-
-        System.out.println(you);
-
         me.happyBirthday();
 
+        try {
+            Person son = me.newChildBuilder().
+                    setName("Nastya").
+                    build();
+
+            System.out.println(son);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Person you = new PersonBuilder().
+                    setName("Lina").
+                    setSurname("Makarova").
+                    setAge(-9).
+                    build();
+
+            System.out.println(you);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+
+
         System.out.println(me);
-
-        Person son = me.newChildBuilder().
-                setName("Nastya").
-                build();
-
-        System.out.println(son);
     }
 
 }

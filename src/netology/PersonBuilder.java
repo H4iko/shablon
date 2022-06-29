@@ -13,36 +13,43 @@ public class PersonBuilder {
 
     public PersonBuilder setName(String name) {
         this.name = name;
+        if (this.surname == null) {
+            throw new IllegalStateException("No name");
+        }
         return this;
     }
     public PersonBuilder setSurname(String surname) {
         this.surname = surname;
+        if (this.surname == null) {
+            throw new IllegalStateException("No surname");
+        }
         return this;
     }
-    public PersonBuilder setAge(Integer age) {
+    public PersonBuilder setAge(Integer age) throws IllegalStateException {
         this.age = age;
+        if (this.age < 0) {
+            throw new IllegalStateException("your age can't be less than 0");
+        }
         return this;
     }
     public PersonBuilder setAddress(String city) {
         this.city = city;
+        if (this.surname == null) {
+            throw new IllegalStateException("No address");
+        }
         return this;
     }
 
-    public Person build() throws IllegalStateException {
-        if(this.name == null || this.surname == null) {
-            IllegalStateException e = new IllegalStateException("non name or surname");
-            e.printStackTrace();
+    public Person build() {
+        if (this.name == null || this.surname == null) {
             return null;
         }
-        if(this.age < 0) {
-            IllegalStateException e = new IllegalStateException("your age can't be less than 0");
-            e.printStackTrace();
-            return new Person(this.name, this.surname, this.city);
-        }
-        if(this.city == null) {
-            IllegalStateException e = new IllegalStateException("enter your city");
-            e.printStackTrace();
-            return new Person(this.name, this.surname, this.city);
+        if (this.city == null) {
+            return new Person(this.name, this.surname);
+        } else {
+            if (this.age < 0) {
+                return new Person(this.name, this.surname, this.city);
+            }
         }
 
         return new Person(this.name, this.surname, this.age, this.city);
