@@ -13,16 +13,10 @@ public class PersonBuilder {
 
     public PersonBuilder setName(String name) {
         this.name = name;
-        if (this.surname == null) {
-            throw new IllegalStateException("No name");
-        }
         return this;
     }
     public PersonBuilder setSurname(String surname) {
         this.surname = surname;
-        if (this.surname == null) {
-            throw new IllegalStateException("No surname");
-        }
         return this;
     }
     public PersonBuilder setAge(Integer age) throws IllegalStateException {
@@ -42,6 +36,7 @@ public class PersonBuilder {
 
     public Person build() {
         if (this.name == null || this.surname == null) {
+            throw new IllegalStateException("No surname or name");
             return null;
         }
         if (this.city == null) {
