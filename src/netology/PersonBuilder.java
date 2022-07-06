@@ -27,7 +27,7 @@ public class PersonBuilder {
     public PersonBuilder setAge(Integer age) throws IllegalStateException {
         this.age = age;
         if (this.age < 0) {
-            throw new IllegalStateException("your age can't be less than 0");
+            throw new IllegalArgumentException("your age can't be less than 0");
         }
         return this;
     }
@@ -35,7 +35,7 @@ public class PersonBuilder {
     public PersonBuilder setAddress(String city) {
         this.city = city;
         if (this.surname == null) {
-            throw new IllegalStateException("No address");
+            throw new IllegalArgumentException("No address");
         }
         return this;
     }
